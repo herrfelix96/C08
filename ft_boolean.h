@@ -15,23 +15,13 @@
 
 # include <unistd.h>
 
-typedef enum e_enum
-{
-	FALSE,
-	TRUE
-}	t_bool;
+typedef int t_bool;
+# define FALSE (0)
+# define TRUE (1)
 
-# define EVEN_MSG "I have an even number of arguments\n"
-# define ODD_MSG "I have an odd number of arguments\n"
-# define SUCCESS 0
-# define EVEN is_even
-
-int	is_even(int num)
-{
-	if (num % 2 == 0)
-		return (1);
-	else
-		return (0);
-}
+# define EVEN_MSG "I have an even number of arguments.\n"
+# define ODD_MSG "I have an odd number of arguments.\n"
+# define SUCCESS (0)
+# define EVEN(a) ((a) % 2 == 0)
 
 #endif
