@@ -6,7 +6,7 @@
 /*   By: fharutyu <fharutyu@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 17:04:21 by fharutyu          #+#    #+#             */
-/*   Updated: 2025/09/09 14:14:40 by fharutyu         ###   ########.fr       */
+/*   Updated: 2025/09/09 14:23:23 by fharutyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -23,15 +23,15 @@ typedef struct s_stock_str
 #include <stdlib.h>
 #include <unistd.h>
 
-//void				ft_show_tab(struct s_stock_str *par);
+//void				ft_show_tab(t_stock_str *par);
 //void				ft_putchar(int num);
 
-struct	s_stock_str	*ft_error(int arr_count, struct s_stock_str *array);
-struct	s_stock_str	*ft_strs_to_tab(int ac, char **av);
-int					ft_strlen(char *str);
-void				ft_strcpy(char *dest, char *src);
+t_stock_str	*ft_error(int arr_count, struct s_stock_str *array);
+t_stock_str	*ft_strs_to_tab(int ac, char **av);
+int			ft_strlen(char *str);
+void		ft_strcpy(char *dest, char *src);
 
-struct s_stock_str	*ft_error(int arr_count, struct s_stock_str *array)
+t_stock_str	*ft_error(int arr_count, t_stock_str *array)
 {
 	while (arr_count >= 0)
 	{
@@ -43,7 +43,7 @@ struct s_stock_str	*ft_error(int arr_count, struct s_stock_str *array)
 	return (NULL);
 }
 
-struct s_stock_str	*ft_str_allocation(int ac, struct s_stock_str *array,
+t_stock_str	*ft_str_allocation(int ac, t_stock_str *array,
 char **av)
 {
 	int	i;
@@ -62,7 +62,7 @@ char **av)
 	return (array);
 }
 
-struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
+t_stock_str	*ft_strs_to_tab(int ac, char **av)
 {
 	int			i;
 	t_stock_str	*array;
@@ -127,7 +127,7 @@ int main(void)
 	return (0);
 }
 
-void ft_show_tab(struct s_stock_str *par)
+void ft_show_tab(t_stock_str *par)
 {
 	int j;
 
