@@ -6,7 +6,7 @@
 /*   By: fharutyu <fharutyu@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 17:04:21 by fharutyu          #+#    #+#             */
-/*   Updated: 2025/09/08 15:05:38 by fharutyu         ###   ########.fr       */
+/*   Updated: 2025/09/09 14:14:40 by fharutyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -71,10 +71,7 @@ struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 	if (!array)
 		return (NULL);
 	if (ft_str_allocation(ac, array, av) == NULL)
-	{
-		free(array);
 		return (NULL);
-	}
 	i = 0;
 	while (i < ac)
 	{
@@ -90,17 +87,14 @@ struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 
 int	ft_strlen(char *str)
 {
-	int	len;
 	int	i;
 
 	i = 0;
-	len = 0;
 	while (str[i] != '\0')
 	{
-		len++;
 		i++;
 	}
-	return (len);
+	return (i);
 }
 
 void	ft_strcpy(char *dest, char *src)
@@ -120,11 +114,13 @@ int main(void)
 	char *texts[6] = {"new",   "sample", "text",
 					  "APPLE", "BANANA", "Growth begins where comfort ends"};
 	t_stock_str *array = ft_strs_to_tab(ac, texts);
+	if (!array)
+		return (1);
 	ft_show_tab(array);
-	while (ac >= 0)
+	while (ac >= 1)
 	{
-		free(array[ac].str);
-		free(array[ac].copy);
+		free(array[ac - 1].str);
+		free(array[ac - 1].copy);
 		ac--;
 	}
 	free(array);
@@ -135,7 +131,7 @@ void ft_show_tab(struct s_stock_str *par)
 {
 	int j;
 
-	while (par->str != 0)
+	while (par->str != NULL)
 	{
 		j = 0;
 		while (par->str[j] != '\0')
