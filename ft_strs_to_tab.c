@@ -83,8 +83,8 @@ struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 		array[i].size = ft_strlen(av[i]);
 		i++;
 	}
-	array[i].str[0] = 0;
-	array[i].copy[0] = 0;
+	array[i].str = 0;
+	array[i].copy = 0;
 	return (array);
 }
 
