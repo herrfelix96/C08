@@ -53,18 +53,12 @@ char **av)
 	{
 		array[i].str = malloc(ft_strlen(av[i]) + 1);
 		if (array[i].str == NULL)
-			return (ft_error(i, array));
+			return (ft_error(i - 1, array));
 		array[i].copy = malloc(ft_strlen(av[i]) + 1);
 		if (array[i].copy == NULL)
-			return (ft_error(i, array));
+			return (ft_error(i - 1, array));
 		i++;
 	}
-	array[i].str = malloc(1);
-	if (array[i].str == NULL)
-		return (ft_error(i, array));
-	array[i].copy = malloc(1);
-	if (array[i].copy == NULL)
-		return (ft_error(i, array));
 	return (array);
 }
 
@@ -76,7 +70,11 @@ struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 	array = malloc(sizeof(t_stock_str) * (ac + 1));
 	if (!array)
 		return (NULL);
-	ft_str_allocation(ac, array, av);
+	if (ft_str_allocation(ac, array, av) == NULL)
+	{
+		free(array);
+		return (NULL);
+	}
 	i = 0;
 	while (i < ac)
 	{
@@ -85,8 +83,8 @@ struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 		array[i].size = ft_strlen(av[i]);
 		i++;
 	}
-	array[i].str[0] = '0';
-	array[i].copy[0] = '0';
+	array[i].str[0] = 0;
+	array[i].copy[0] = 0;
 	return (array);
 }
 
@@ -137,7 +135,7 @@ void ft_show_tab(struct s_stock_str *par)
 {
 	int j;
 
-	while (par->str[0] != '0')
+	while (par->str != 0)
 	{
 		j = 0;
 		while (par->str[j] != '\0')
